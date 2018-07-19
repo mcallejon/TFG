@@ -127,7 +127,7 @@
                     <h4>Temperatura :   <?php echo $temparr[0]; ?></h4>
                     <h4>Humedad rel :   <?php echo $humarr[0]; ?></h4>
                     <br/>
-                    <p><a class="btn btn-default" href="#" role="button">Actualizar &raquo;</a></p>
+                    <p><a class="btn btn-default" href="front.php" role="button">Actualizar &raquo;</a></p>
                 </div>
                 <div class="col-md-4">
                     <h2>Alarmas</h2>
