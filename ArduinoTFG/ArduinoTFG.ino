@@ -107,7 +107,7 @@ void enviaDatos(float t, float h, int d, int a) {
   // Enviamos petción GET y pásamos los parametros de los sensores y num de dispositivo
   gsmSerie.print("AT+");
   gsmSerie.print("HTTPPARA=\"URL\",");
-  gsmSerie.print("\"http://90.171.51.220/tfg/insert.php");
+  gsmSerie.print("\"http://xxx.xxx.xxx.xxx/tfg/insert.php");
   gsmSerie.print("?temp=");
   gsmSerie.print(t);
   gsmSerie.print("&hum=");
@@ -142,7 +142,7 @@ void enviaSms() {
   delay(1000);
 
   //Número de destino y texto del mensaje
-  gsmSerie.println("AT+CMGS=\"689201264\"");
+  gsmSerie.println("AT+CMGS=\"xxxxxxxxx\"");
   gsmSerie.println("se ha activado el riego");
   delay(1000);
 
