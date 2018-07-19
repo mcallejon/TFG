@@ -114,7 +114,7 @@ void enviaDatos(float t, float h, int d, int a) {
   gsmSerie.print(h);
   gsmSerie.print("&disp=");
   gsmSerie.print(d);
-  gsmSerie.print("&disp=");
+  gsmSerie.print("&alerta=");
   gsmSerie.print(a);
   gsmSerie.println("\"");
   delay(2000);
@@ -148,7 +148,7 @@ void enviaSms() {
 
   //Finalización
   gsmSerie.println((char) 26);
-  delay(100);
+  delay(1000);
   gsmSerie.println();
   delay(5000);
   Serial.println("SMS enviado");
@@ -164,11 +164,11 @@ void enviaSms2() {
   //Número de destino y texto del mensaje
   gsmSerie.println("AT+CMGS=\"689201264\"");
   gsmSerie.println("fin de la alerta");
-  delay(100);
+  delay(1000);
 
   //Finalización
   gsmSerie.println((char) 26);
-  delay(100);
+  delay(1000);
   gsmSerie.println();
   delay(5000);
   Serial.println("SMS enviado");
