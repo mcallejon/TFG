@@ -1,24 +1,30 @@
-<!-- Código PHP para highcharts -->
-
 <?php
 
     require('conexion.php');
 
-    $sql = "SELECT temperatura FROM sensores ORDER BY 'fecha' LIMIT 12";
+    $sql = "SELECT temperatura from (
+SELECT fecha,temperatura FROM `sensores` ORDER BY `sensores`.`fecha` DESC limit 12) as v
+order by fecha";
 
     $temperatura = mysqli_query($conexion,$sql);
     $temperatura = mysqli_fetch_all($temperatura,MYSQLI_ASSOC);
     $temperatura = json_encode(array_column($temperatura, 'temperatura'),JSON_NUMERIC_CHECK);
 
-    $sql = "SELECT humedad FROM sensores ORDER BY 'fecha' LIMIT 12";
+    $sql1 = "SELECT humedad from (
+SELECT fecha,humedad FROM `sensores` ORDER BY `sensores`.`fecha` DESC limit 12) as v
+order by fecha";
 
-    $humedad = mysqli_query($conexion,$sql);
+    $humedad = mysqli_query($conexion,$sql1);
     $humedad = mysqli_fetch_all($humedad,MYSQLI_ASSOC);
     $humedad = json_encode(array_column($humedad, 'humedad'),JSON_NUMERIC_CHECK);
 
-    $sql5 = "SELECT fecha FROM sensores ORDER BY 'fecha' LIMIT 12";
+    $sql5 = "SELECT fecha from (
+SELECT fecha FROM `sensores` ORDER BY `sensores`.`fecha` DESC limit 12) as v
+order by fecha";
 
-    $fecha = mysqli_query($conexion,$sql);
+
+
+    $fecha = mysqli_query($conexion,$sql5);
     $fecha = mysqli_fetch_all($fecha,MYSQLI_ASSOC);
     $fecha = json_encode(array_column($fecha, 'fecha'),JSON_NUMERIC_CHECK);
 
@@ -39,7 +45,7 @@
 
     $sql6 = "SELECT dispositivo FROM sensores where fecha=(select max(fecha) from sensores)";
 
-    $disp = mysqli_query($conexion,$sql4);
+    $disp = mysqli_query($conexion,$sql6);
     $disparr = mysqli_fetch_array($disp);
 
     if ($alertarr[0] > "1") {
@@ -78,12 +84,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="/tfgFront/about.html">Acerca de</a>
+                    <a class="navbar-brand" href="about.html">Acerca de</a>
 
                 </div>
                 <div class="navbar-collapse collapse">
                     <form class="navbar-form navbar-right">
-                        <a href="/tfgFront/index.php" onclick="return confirm('¿Confirma que desea salir?')" class="btn btn-success">Deconectar &raquo; </a>
+                        <a href="index.php" onclick="return confirm('¿Confirma que desea salir?')" class="btn btn-success">Deconectar &raquo; </a>
                     </form>
                 </div>
                 <!--/.navbar-collapse -->
