@@ -1,7 +1,9 @@
-#include < SoftwareSerial.h >
-  SoftwareSerial gsmSerie(7, 8);
-const int pinLed = 12;#include "DHT.h"#
-define DHTPIN 2# define DHTTYPE DHT22
+#include <SoftwareSerial.h >
+SoftwareSerial gsmSerie(7, 8);
+const int pinLed = 12;
+#include "DHT.h"
+#define DHTPIN 2
+#define DHTTYPE DHT22
 DHT dht(DHTPIN, DHTTYPE);
 int a = 1;
 
@@ -63,12 +65,12 @@ void loop() {
   Serial.print(a);
   Serial.print('\n');
 
-  //Condicional para determinar el envío o no del SMS de alerta, acionamiento del riego o caso inverso
+  //Condicional (los valores son en modo test para pruebas, hay que ajustar según tabla) para determinar el envío o no del SMS de alerta, acionamiento del riego o caso inverso
 
   switch (a) {
   case 1:
 
-    if (t > 20 && h < 70) {
+    if (t < 20 && h < 70) {      
       a = 2;
       enviaSms();
       riegoON();
@@ -162,7 +164,7 @@ void enviaSms2() {
   delay(1000);
 
   //Número de destino y texto del mensaje
-  gsmSerie.println("AT+CMGS=\"689201264\"");
+  gsmSerie.println("AT+CMGS=\"xxxxxxxxx\"");
   gsmSerie.println("fin de la alerta");
   delay(1000);
 
